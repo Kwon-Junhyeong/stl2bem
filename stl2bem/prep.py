@@ -94,7 +94,7 @@ def prep_report(verts, tris, info, c=343.0, unit_to_m=1.0):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser("stl2bem.prep", description="CAD parts (STL) -> one closed surface for the BEM")
+    ap = argparse.ArgumentParser("stl2bem-prep", description="Merge overlapping STL parts into one closed surface for the BEM.")
     ap.add_argument("parts", nargs="+", help="STL files of the parts, in the same coordinate frame")
     ap.add_argument("--pitch", type=float, required=True, help="voxel size, in the STL units (sets the element size)")
     ap.add_argument("--units", default="auto", choices=["auto", "m", "cm", "mm"], help="for the frequency report")
