@@ -139,8 +139,8 @@ report prints the frequency limit from the mean edge length.
 ## Limits
 
 * Rigid bodies in free space: no absorption, no vibrating surfaces, no floor or walls.
-* Dense matrices: memory grows with the square and time with the cube of the element count, so a few thousand
-  elements on a laptop CPU and about 15,000 on an 8 GB GPU.
+* Dense matrices: memory grows with the square and time with the cube of the element count. 10,800 elements take
+  about 5 GB on the GPU or 7 GB of RAM on the CPU; an 8 GB GPU handles about 15,000.
 * CHIEF points need room inside the body. Thin-walled objects (in the gallery, the bottle and the pipe) are solved
   with the CBIE alone, which is safe there: their irregular frequencies start near c / 2t for wall thickness t,
   far above the band the mesh resolves.
