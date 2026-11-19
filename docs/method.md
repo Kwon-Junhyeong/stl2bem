@@ -152,8 +152,9 @@ mode: if CHIEF results look suspicious at some frequencies, solving with both fo
 ## Memory and time
 
 Dense matrices: memory ~ 3 N² × 8 bytes on the GPU (A, Q, R), ~ 3 N² × 16 bytes on the CPU (A, AᴴA in double).
-Time per frequency grows as N³ (factorization) + N²·D (D directions). Measured: 10,800 elements take about 5 GB
-on the GPU and 7 GB of RAM on the CPU, and an 8 GB GPU handles about 15,000 (see validation.md#performance).
+Time per frequency grows as N³ (factorization) + N²·D (D directions). Measured peak memory for N elements (single
+precision): GPU about 2.5 GB + 20 bytes × N², CPU about 1.5 GB + 55 bytes × N² (validation.md#performance); an
+8 GB GPU handles about 15,000 elements.
 Large bodies at high frequencies need fast multipole methods
 (e.g. NumCalc in Mesh2HRTF), which this package does not implement.
 

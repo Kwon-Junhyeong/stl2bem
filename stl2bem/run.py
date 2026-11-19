@@ -178,7 +178,8 @@ def main(argv=None):
                         len(positions), args.doa_chunk, itemsize=8 if precision == "single" else 16, gpu=bk.gpu)
     t = est["seconds"]
     when = f"{t:.0f} s" if t < 120 else (f"{t / 60:.0f} min" if t < 7200 else f"{t / 3600:.1f} h")
-    print(f"  estimate : memory ~ {est['gpu_gb']:.1f} GB, file ~ {est['file_mb']:.0f} MB, time ~ {when} "
+    print(f"  estimate : {'GPU memory' if bk.gpu else 'RAM'} ~ {est['memory_gb']:.1f} GB, file ~ {est['file_mb']:.0f} MB, "
+          f"time ~ {when} "
           f"({'RTX 4060 Ti' if bk.gpu else '20-thread CPU'} reference; fewer --n_az/--n_el or --nfft is faster)")
     free = bk.free_memory_gb()
     if free is not None and est["gpu_gb"] > free:

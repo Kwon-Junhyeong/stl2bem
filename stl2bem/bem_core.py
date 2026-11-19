@@ -48,20 +48,21 @@ def spherical_doa_grid(n_az: int = 360, n_el: int = 181):
 
 
 def estimate_cost(n_elem, n_chief, n_doa, n_freq, n_panel, doa_chunk, itemsize=8, tile=1024, gpu=True):
-    """Rough peak memory (GB), solve time (s) and file size (MB).
+    """Rough peak memory (GB), solve time (s) and file size (MB) for N = n_elem elements, single precision.
 
-    Time per frequency = assembly and factorization + one solve per direction, fitted to examples/benchmark and
-    to runs with 65,160 directions (box, 8 receivers, single precision): GPU RTX 4060 Ti, CPU i5-13500 (20 threads).
-    Other machines scale accordingly; many receivers (field maps) add to it."""
-    N, M = n_elem, n_elem + n_chief
-    peak = ((2 * M * N + N * N) * itemsize            # A + Q + R
-            + (M + N) * doa_chunk * itemsize          # right-hand sides / solutions
-            + 256 * 2 ** 20)                          # assembly temporaries (bounded by the tile budget)
+    Memory: GPU 2.5 GB + 20 bytes x N^2, CPU 1.5 GB + 55 bytes x N^2 (examples/benchmark; generous for small
+    meshes, within a few percent above 10,000 elements). Time per frequency = assembly and factorization + one
+    solve per direction, fitted to the benchmark and to runs with 65,160 directions (box, 8 receivers): GPU RTX
+    4060 Ti, CPU i5-13500 (20 threads). Other machines scale accordingly; many receivers (field maps) add to it."""
+    N = n_elem
+    scale = itemsize / 8                              # double precision: twice the matrices
     if gpu:
+        mem_gb = 2.5 + scale * 20 * N ** 2 / 1e9
         per_freq = 9.8e-9 * N ** 2.15 + 1.45e-12 * N ** 2 * n_doa
     else:
+        mem_gb = 1.5 + scale * 55 * N ** 2 / 1e9
         per_freq = 2.9e-11 * N ** 3 + 6.1e-10 * N ** 1.75 * n_doa
-    return {"gpu_gb": peak / 1024 ** 3, "seconds": per_freq * max(n_freq - 1, 1),   # the 0 Hz bin is free
+    return {"memory_gb": mem_gb, "gpu_gb": mem_gb, "seconds": per_freq * max(n_freq - 1, 1),   # 0 Hz is free
             "file_mb": n_panel * n_doa * n_freq * 8 / 1024 ** 2}
 
 
