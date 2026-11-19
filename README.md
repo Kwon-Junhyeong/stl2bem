@@ -1,5 +1,9 @@
 # stl2bem
 
+[![PyPI](https://img.shields.io/pypi/v/stl2bem)](https://pypi.org/project/stl2bem/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24376763.svg)](https://doi.org/10.5281/zenodo.24376763)
+[![tests](https://github.com/Kwon-Junhyeong/stl2bem/actions/workflows/tests.yml/badge.svg)](https://github.com/Kwon-Junhyeong/stl2bem/actions/workflows/tests.yml)
+
 Computes the sound pressure on and around a rigid object from a closed STL mesh, with the boundary element method.
 It runs on a CPU or an NVIDIA GPU and writes tables over directions and frequencies, for example the response of
 every microphone on a device, as HDF5 or SOFA files.
@@ -32,12 +36,12 @@ objects are in [docs/validation.md](https://github.com/Kwon-Junhyeong/stl2bem/bl
 ## Install
 
 ```bash
-git clone https://github.com/Kwon-Junhyeong/stl2bem
-cd stl2bem
-pip install .                    # NumPy, SciPy, h5py (CPU)
-pip install ".[prep,sofa]"       # optional: merging CAD parts, SOFA export
-pip install cupy-cuda12x         # optional GPU backend; pick the CuPy package of your CUDA version
+pip install stl2bem                  # NumPy, SciPy, h5py (CPU)
+pip install "stl2bem[prep,sofa]"     # optional: merging CAD parts, SOFA export
+pip install cupy-cuda12x             # optional GPU backend; pick the CuPy package of your CUDA version
 ```
+
+The examples and figures need the repository: `git clone https://github.com/Kwon-Junhyeong/stl2bem`.
 
 ## Quick start
 
