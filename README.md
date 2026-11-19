@@ -4,21 +4,21 @@ Computes the sound pressure on and around a rigid object from a closed STL mesh,
 It runs on a CPU or an NVIDIA GPU and writes tables over directions and frequencies, for example the response of
 every microphone on a device, as HDF5 or SOFA files.
 
-![stl2bem: an STL triangle mesh in, the sound pressure on its surface out](docs/img/fig_pipeline.png)
+![stl2bem: an STL triangle mesh in, the sound pressure on its surface out](https://raw.githubusercontent.com/Kwon-Junhyeong/stl2bem/main/docs/img/fig_pipeline.png)
 
 <table>
 <tr>
-<td width="33%"><img src="docs/img/gallery_star.gif" alt="star, 4 kHz"></td>
-<td width="33%"><img src="docs/img/gallery_boat.gif" alt="toy boat, 3 kHz"></td>
-<td width="33%"><img src="docs/img/gallery_mug.gif" alt="mug, 2.5 kHz"></td>
+<td width="33%"><img src="https://raw.githubusercontent.com/Kwon-Junhyeong/stl2bem/main/docs/img/gallery_star.gif" alt="star, 4 kHz"></td>
+<td width="33%"><img src="https://raw.githubusercontent.com/Kwon-Junhyeong/stl2bem/main/docs/img/gallery_boat.gif" alt="toy boat, 3 kHz"></td>
+<td width="33%"><img src="https://raw.githubusercontent.com/Kwon-Junhyeong/stl2bem/main/docs/img/gallery_mug.gif" alt="mug, 2.5 kHz"></td>
 </tr>
 <tr>
 <td align="center">star, 4 kHz</td><td align="center">toy boat, 3 kHz</td><td align="center">mug, 2.5 kHz</td>
 </tr>
 <tr>
-<td><img src="docs/img/gallery_bottle.gif" alt="wine bottle, 144 Hz"></td>
-<td><img src="docs/img/gallery_bell.gif" alt="bell, 2.5 kHz"></td>
-<td><img src="docs/img/gallery_pipe.gif" alt="elbow pipe, 1.4 kHz"></td>
+<td><img src="https://raw.githubusercontent.com/Kwon-Junhyeong/stl2bem/main/docs/img/gallery_bottle.gif" alt="wine bottle, 144 Hz"></td>
+<td><img src="https://raw.githubusercontent.com/Kwon-Junhyeong/stl2bem/main/docs/img/gallery_bell.gif" alt="bell, 2.5 kHz"></td>
+<td><img src="https://raw.githubusercontent.com/Kwon-Junhyeong/stl2bem/main/docs/img/gallery_pipe.gif" alt="elbow pipe, 1.4 kHz"></td>
 </tr>
 <tr>
 <td align="center">wine bottle, 144 Hz</td><td align="center">bell, 2.5 kHz</td><td align="center">elbow pipe, 1.4 kHz</td>
@@ -27,7 +27,7 @@ every microphone on a device, as HDF5 or SOFA files.
 
 Plane waves passing six objects modeled in Fusion (3,800 to 12,000 triangles each): real part of the total
 pressure on a slice through each object, over one period. Surface pressure and cavity resonances of the same
-objects are in [docs/validation.md](docs/validation.md#gallery).
+objects are in [docs/validation.md](https://github.com/Kwon-Junhyeong/stl2bem/blob/main/docs/validation.md#gallery).
 
 ## Install
 
@@ -106,21 +106,21 @@ keeps the CAD origin.
 
 ## Accuracy
 
-![sphere field](docs/img/fig_sphere_field.png)
+![sphere field](https://raw.githubusercontent.com/Kwon-Junhyeong/stl2bem/main/docs/img/fig_sphere_field.png)
 
 Rigid sphere with 5,120 elements at ka = 3.7 against the exact solution: the median difference is 8.6 × 10⁻⁴ of
 the incident amplitude. The singular part of the integrals is evaluated exactly, and microphones on the surface are
 second-order accurate, also on edges and vertices.
 
-![cross-check](docs/img/fig_crosscheck.png)
+![cross-check](https://raw.githubusercontent.com/Kwon-Junhyeong/stl2bem/main/docs/img/fig_crosscheck.png)
 
 The six gallery meshes solved again with [bempp-cl](https://github.com/bempp/bempp-cl), which uses a different
 formulation (Burton-Miller, linear elements): the fields differ by 0.01-0.4 % (median) and the resonance
 frequencies by at most 0.5 %. One frequency with 6,840 directions takes 1 s for 4,800 elements and 11 s for
 14,700 on an RTX 4060 Ti (8 GB).
 
-Convergence, the comparison with the original code, resonances and timings: [docs/validation.md](docs/validation.md).
-Equations and implementation: [docs/method.md](docs/method.md).
+Convergence, the comparison with the original code, resonances and timings: [docs/validation.md](https://github.com/Kwon-Junhyeong/stl2bem/blob/main/docs/validation.md).
+Equations and implementation: [docs/method.md](https://github.com/Kwon-Junhyeong/stl2bem/blob/main/docs/method.md).
 
 ## Preparing CAD
 
@@ -145,7 +145,7 @@ report prints the frequency limit from the mean edge length.
   with the CBIE alone, which is safe there: their irregular frequencies start near c / 2t for wall thickness t,
   far above the band the mesh resolves.
 * `--formulation burton-miller` is experimental: as accurate as the default away from resonances, but it damps
-  sharp cavity resonances. See [docs/method.md](docs/method.md#burton-miller-experimental-option).
+  sharp cavity resonances. See [docs/method.md](https://github.com/Kwon-Junhyeong/stl2bem/blob/main/docs/method.md#burton-miller-experimental-option).
 
 ## Used in
 
@@ -158,4 +158,4 @@ An earlier version of this solver computed the microphone responses of a robot b
 
 ## License
 
-MIT (see [LICENSE](LICENSE)).
+MIT (see [LICENSE](https://github.com/Kwon-Junhyeong/stl2bem/blob/main/LICENSE)).
