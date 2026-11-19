@@ -1,0 +1,14 @@
+% Social preview of the repository (GitHub: Settings -> Social preview), 2:1, exported at 1280 x 640 px
+% Not used in the README. Build: xelatex -output-directory=out social_preview.tex, then
+% pdftoppm -png -singlefile -scale-to-x 1280 -scale-to-y 640 out/social_preview.pdf ../img/social_preview
+\input{figstyle}
+\standaloneconfig{border=0pt}
+\begin{document}
+\begin{tikzpicture}
+  \fill[white] (0,0) rectangle (16,8);
+  \node[inner sep=0] at (10.95,4.0) {\includegraphics[width=9.2cm]{raster/stl_boat_field.png}};
+  \node[anchor=base west, text=black, font=\fontsize{40pt}{44pt}\selectfont\bfseries] at (0.9,4.6) {stl2bem};
+  \node[anchor=north west, text=black, align=left, font=\fontsize{15pt}{19pt}\selectfont] at (0.95,3.95)
+    {sound scattering\\by rigid objects\\from STL meshes};
+\end{tikzpicture}
+\end{document}

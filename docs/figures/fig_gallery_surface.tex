@@ -1,0 +1,22 @@
+% Gallery: surface pressure level on each object (same conditions as fig_gallery), one shared color bar.
+\input{figstyle}
+\input{data/gallery_values}
+\begin{document}
+\begin{tikzpicture}
+  \def\S{3.9cm}
+  \newcommand{\tile}[3]{%
+    \node[inner sep=0] (#2) at #1 {\includegraphics[width=\S, height=\S, keepaspectratio]{raster/gal_#2_surface.png}};
+    \node[anchor=north, font=\fs] at ($(#2.south)+(0,0.1cm)$) {#3};}
+  \tile{(0,0)}{star}{star}
+  \tile{(4.3,0)}{boat}{toy boat}
+  \tile{(8.6,0)}{mug}{mug}
+  \tile{(0,-4.4)}{bottle}{wine bottle}
+  \tile{(4.3,-4.4)}{bell}{bell}
+  \tile{(8.6,-4.4)}{pipe}{elbow pipe}
+  \node at (4.3,-7.55) {\pgfplotscolorbardrawstandalone[colormap name=div, colorbar horizontal,
+      point meta min=\galLo, point meta max=\galHi,
+      colorbar style={width=6cm, height=2.2mm, font=\fss, axis line style={cMuted}, xtick style={cMuted},
+        xtick={-8,-4,0,4,8}, xticklabels={\minus8,\minus4,0,4,8},
+        xlabel={$|$\vp$|$ on the surface (dB re incident wave)}, xlabel style={font=\fss}}]};
+\end{tikzpicture}
+\end{document}

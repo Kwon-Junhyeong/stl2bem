@@ -1,0 +1,103 @@
+{
+ "star": {
+  "freq_hz": 4000.0,
+  "elements": 3800,
+  "p1_nodes": 1902,
+  "field_median": 0.002856329487300646,
+  "field_p95": 0.011232670526113481,
+  "field_rel_mean": 0.004203968275008319,
+  "surface_rel_mean": 0.022184532953621005,
+  "surface_p95": 0.05975357874850811,
+  "gmres_info": 0,
+  "iterations": 52,
+  "seconds": 114.0190794467926,
+  "seconds_total": 146.25029969215393
+ },
+ "boat": {
+  "freq_hz": 3000.0,
+  "elements": 9912,
+  "p1_nodes": 4958,
+  "field_median": 0.004361662657469788,
+  "field_p95": 0.01757428013929757,
+  "field_rel_mean": 0.007491605309288711,
+  "surface_rel_mean": 0.01890223367207132,
+  "surface_p95": 0.05164547942194885,
+  "gmres_info": 0,
+  "iterations": 88,
+  "seconds": 710.2743585109711,
+  "seconds_total": 748.6127672195435
+ },
+ "mug": {
+  "freq_hz": 2500.0,
+  "elements": 8400,
+  "p1_nodes": 4200,
+  "field_median": 0.004092478354205705,
+  "field_p95": 0.03563682556880649,
+  "field_rel_mean": 0.00859081264875415,
+  "surface_rel_mean": 0.017636970018716152,
+  "surface_p95": 0.043415105551857514,
+  "gmres_info": 0,
+  "iterations": 102,
+  "seconds": 522.2425651550293,
+  "seconds_total": 556.3364078998566
+ },
+ "bottle": {
+  "freq_hz": 300.0,
+  "elements": 7006,
+  "p1_nodes": 3505,
+  "field_median": 9.885476242394429e-05,
+  "field_p95": 0.00782306552048664,
+  "field_rel_mean": 0.002229781770966341,
+  "surface_rel_mean": 0.005392075147406628,
+  "surface_p95": 0.012722584506025,
+  "gmres_info": 0,
+  "iterations": 64,
+  "seconds": 379.6493420600891,
+  "seconds_total": 425.3953125476837
+ },
+ "bell": {
+  "freq_hz": 2500.0,
+  "elements": 12012,
+  "p1_nodes": 6008,
+  "field_median": 0.0019196248909739183,
+  "field_p95": 0.011467646243658588,
+  "field_rel_mean": 0.003661196763043538,
+  "surface_rel_mean": 0.008370506440629269,
+  "surface_p95": 0.021254032684006413,
+  "gmres_info": 0,
+  "iterations": 77,
+  "seconds": 1113.955153465271,
+  "seconds_total": 1165.7027413845062
+ },
+ "pipe": {
+  "freq_hz": 1100.0,
+  "elements": 6040,
+  "p1_nodes": 3020,
+  "field_median": 0.00018880791451014527,
+  "field_p95": 0.003282949719438693,
+  "field_rel_mean": 0.0011006920448606119,
+  "surface_rel_mean": 0.0040934444662073105,
+  "surface_p95": 0.012777777645877016,
+  "gmres_info": 0,
+  "iterations": 83,
+  "seconds": 263.0540313720703,
+  "seconds_total": 285.577929019928
+ },
+ "bottle_resonance": {
+  "ours_f0": 144.65602656021275,
+  "ours_halfwidth": 0.06133000745902926,
+  "ours_peak_db": 61.57214559324278,
+  "bempp_f0": 145.35409706868987,
+  "bempp_halfwidth": 0.0627680860486371,
+  "bempp_peak_db": 61.44870834950906,
+  "bempp_at_f0_db": 61.44873660947724
+ },
+ "pipe_resonance": {
+  "ours_f0": 1447.0271715101776,
+  "ours_halfwidth": 10.838774340283496,
+  "ours_peak_db": 29.83669565887069,
+  "bempp_f0": 1448.047470341963,
+  "bempp_halfwidth": 10.84509217385412,
+  "bempp_peak_db": 29.880653249977165
+ }
+}

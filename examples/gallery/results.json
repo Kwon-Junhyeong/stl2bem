@@ -1,0 +1,52 @@
+{
+ "star": {
+  "elements": 3800,
+  "edge_mm": 2.9325273168987076,
+  "field_hz": 4000.0,
+  "seconds": 10.609522342681885
+ },
+ "boat": {
+  "elements": 9912,
+  "edge_mm": 3.7727612370484533,
+  "field_hz": 3000.0,
+  "seconds": 30.710180282592773
+ },
+ "mug": {
+  "elements": 8400,
+  "edge_mm": 4.145223162523773,
+  "peak_hz": 763.7301587301587,
+  "peak_db": 23.475236892700195,
+  "estimate": "quarter wave",
+  "estimate_hz": 775.3164556962026,
+  "field_hz": 2500.0,
+  "seconds": 280.3317060470581
+ },
+ "bottle": {
+  "elements": 7006,
+  "edge_mm": 5.976113292531491,
+  "peak_hz": 144.5,
+  "peak_db": 52.830562591552734,
+  "estimate": "Helmholtz",
+  "estimate_hz": 160.0,
+  "field_hz": 144.5,
+  "seconds": 161.30560541152954
+ },
+ "bell": {
+  "elements": 12012,
+  "edge_mm": 3.6807590147855014,
+  "peak_hz": 800.0,
+  "peak_db": 25.361053466796875,
+  "field_hz": 2500.0,
+  "seconds": 518.85520362854
+ },
+ "pipe": {
+  "elements": 6040,
+  "edge_mm": 3.9996233176394087,
+  "peak_hz": 1445.0,
+  "peak_db": 29.571399688720703,
+  "estimate": "open pipe",
+  "estimate_hz": 726.6949152542373,
+  "field_hz": 1445.0,
+  "seconds": 96.28476548194885
+ }
+}

@@ -1,0 +1,19 @@
+% What stl2bem does, at a glance: an STL in, the sound pressure on its surface out.
+% Larger type than the other figures: this one is shown at the top of the README at about 880 px.
+\input{figstyle}
+\setmonofont{DejaVu Sans Mono}[Scale=0.88]
+\renewcommand{\fss}{\fontsize{10pt}{12pt}\selectfont}
+\renewcommand{\fsl}{\fontsize{13pt}{15.6pt}\selectfont}
+\begin{document}
+\begin{tikzpicture}[text=black, >=Stealth]
+  \node[inner sep=0] (in) at (0,0) {\includegraphics[height=3.2cm]{raster/stl_boat_mesh.png}};
+  \node[inner sep=0, anchor=west] (out) at ([xshift=4.4cm]in.east) {\includegraphics[height=3.2cm]{raster/stl_boat_pressure.png}};
+  \draw[->, cNavy, line width=1.6pt] ([xshift=0.5cm]in.east) -- ([xshift=-0.5cm]out.west)
+    node[midway, above=3pt, text=black, font=\fsl\bfseries] {stl2bem}
+    node[midway, below=4pt, text=black, font=\fss] {boundary element method};
+  \node[anchor=north, font=\fsl, align=center] at ([yshift=-0.3cm]in.south)
+    {\texttt{body.stl}\\[2pt]{\fss triangle mesh from CAD}};
+  \node[anchor=north, font=\fsl, align=center] at ([yshift=-0.3cm]out.south)
+    {sound pressure\\[2pt]{\fss on the surface}};
+\end{tikzpicture}
+\end{document}

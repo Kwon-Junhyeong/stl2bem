@@ -1,0 +1,7 @@
+__pycache__/
+*.egg-info/
+*.h5
+docs/figures/out/
+examples/*/data/
+_archive/
+_original_snapshot/

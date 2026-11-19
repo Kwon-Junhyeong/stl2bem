@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use stl2bem, please cite it using these metadata."
+title: "stl2bem: sound scattering by rigid objects from STL files"
+type: software
+authors:
+  - family-names: "Kwon"
+    given-names: "Junhyeong"
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/Kwon-Junhyeong/stl2bem"
+keywords:
+  - acoustics
+  - boundary element method
+  - scattering
+  - microphone array
+  - array manifold

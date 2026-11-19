@@ -1,0 +1,29 @@
+% Rigid sphere, pressure on a plane through the center: exact series | stl2bem | |difference|.
+\input{figstyle}
+\input{data/sphere_values}
+\begin{document}
+\begin{tikzpicture}
+  \def\W{4.1cm}
+  \tikzset{wave/.style={-{Latex[length=2.2mm]}, cInk, line width=0.7pt}}
+  \begin{axis}[name=a, mapaxis, width=\W, xmin=-30, xmax=30, ymin=-30, ymax=30, title={exact}]
+    \addplot graphics[xmin=-30, xmax=30, ymin=-30, ymax=30] {raster/sphere_exact.png};
+    \draw[wave] (axis cs:27,22) -- (axis cs:17,22);
+  \end{axis}
+  \begin{axis}[name=b, at={($(a.east)+(0.35cm,0)$)}, anchor=west, mapaxis, width=\W,
+      xmin=-30, xmax=30, ymin=-30, ymax=30, title={stl2bem},
+      colormap name=div, colorbar, cbar, point meta min=-\sphVmax, point meta max=\sphVmax,
+      colorbar style={ytick={-1,0,1}, yticklabels={\minus1,0,1}, title={Re \vp}, title style={font=\fss}}]
+    \addplot graphics[xmin=-30, xmax=30, ymin=-30, ymax=30] {raster/sphere_bem.png};
+    \draw[wave] (axis cs:27,22) -- (axis cs:17,22);
+  \end{axis}
+  \begin{axis}[name=c, at={($(b.east)+(1.25cm,0)$)}, anchor=west, mapaxis, width=\W,
+      xmin=-30, xmax=30, ymin=-30, ymax=30, title={difference},
+      colormap name=seq, colorbar, cbar, point meta min=-4, point meta max=-1,
+      colorbar style={ytick={-4,-3,-2,-1}, yticklabels={\pow{10}{4},\pow{10}{3},\pow{10}{2},\pow{10}{1}},
+        title={$|\Delta$\vp$|$}, title style={font=\fss}}]
+    \addplot graphics[xmin=-30, xmax=30, ymin=-30, ymax=30] {raster/sphere_error.png};
+  \end{axis}
+  \draw[cInk, line width=0.8pt] ($(a.south west)+(0.15cm,-0.25cm)$) -- ++(\W*10/60,0)
+    node[midway, below=0.5pt, font=\fss] {10 cm};
+\end{tikzpicture}
+\end{document}

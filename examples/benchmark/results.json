@@ -1,0 +1,96 @@
+{
+ "cupy_1200": {
+  "n": 10,
+  "elements": 1200,
+  "backend": "cupy",
+  "seconds_per_freq": 0.06538915634155273,
+  "chief": 20,
+  "gpu_peak_gb": 0.28125,
+  "peak_rss_gb": 0.74017333984375
+ },
+ "cupy_2700": {
+  "n": 15,
+  "elements": 2700,
+  "backend": "cupy",
+  "seconds_per_freq": 0.31227779388427734,
+  "chief": 20,
+  "gpu_peak_gb": 0.638671875,
+  "peak_rss_gb": 0.7401199340820312
+ },
+ "cupy_4800": {
+  "n": 20,
+  "elements": 4800,
+  "backend": "cupy",
+  "seconds_per_freq": 0.9713091850280762,
+  "chief": 20,
+  "gpu_peak_gb": 1.572265625,
+  "peak_rss_gb": 0.7411880493164062
+ },
+ "cupy_7500": {
+  "n": 25,
+  "elements": 7500,
+  "backend": "cupy",
+  "seconds_per_freq": 2.596011757850647,
+  "chief": 20,
+  "gpu_peak_gb": 3.2109375,
+  "peak_rss_gb": 0.7427520751953125
+ },
+ "cupy_10800": {
+  "n": 30,
+  "elements": 10800,
+  "backend": "cupy",
+  "seconds_per_freq": 5.637110471725464,
+  "chief": 20,
+  "gpu_peak_gb": 4.787841796875,
+  "peak_rss_gb": 0.7418174743652344
+ },
+ "cupy_14700": {
+  "n": 35,
+  "elements": 14700,
+  "backend": "cupy",
+  "seconds_per_freq": 11.010369062423706,
+  "chief": 20,
+  "gpu_peak_gb": 6.650390625,
+  "peak_rss_gb": 0.7458877563476562
+ },
+ "numpy_1200": {
+  "n": 10,
+  "elements": 1200,
+  "backend": "numpy",
+  "seconds_per_freq": 1.35545015335083,
+  "chief": 20,
+  "peak_rss_gb": 0.8468132019042969
+ },
+ "numpy_2700": {
+  "n": 15,
+  "elements": 2700,
+  "backend": "numpy",
+  "seconds_per_freq": 4.7924792766571045,
+  "chief": 20,
+  "peak_rss_gb": 1.3129158020019531
+ },
+ "numpy_4800": {
+  "n": 20,
+  "elements": 4800,
+  "backend": "numpy",
+  "seconds_per_freq": 13.354790687561035,
+  "chief": 20,
+  "peak_rss_gb": 2.353252410888672
+ },
+ "numpy_7500": {
+  "n": 25,
+  "elements": 7500,
+  "backend": "numpy",
+  "seconds_per_freq": 35.54838478565216,
+  "chief": 20,
+  "peak_rss_gb": 4.271247863769531
+ },
+ "numpy_10800": {
+  "n": 30,
+  "elements": 10800,
+  "backend": "numpy",
+  "seconds_per_freq": 84.66626942157745,
+  "chief": 20,
+  "peak_rss_gb": 7.364044189453125
+ }
+}

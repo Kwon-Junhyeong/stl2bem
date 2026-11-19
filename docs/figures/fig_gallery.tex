@@ -1,0 +1,18 @@
+% Gallery: one instant of the pressure field on a plane through each object.
+\input{figstyle}
+\input{data/gallery_values}
+\begin{document}
+\begin{tikzpicture}
+  \def\S{3.9cm}
+  \newcommand{\tile}[4]{% #1 position, #2 file key, #3 label, #4 frequency macro key
+    \node[inner sep=0, minimum width=\S, minimum height=\S] (#2) at #1
+      {\includegraphics[width=\S, height=\S, keepaspectratio]{raster/gal_#2_field.png}};
+    \node[anchor=north, font=\fs, yshift=-1pt] at (#2.south) {#3\quad{\color{cMuted}\csname gal#4f\endcsname}};}
+  \tile{(0,0)}{star}{star}{star}
+  \tile{(4.3,0)}{boat}{toy boat}{boat}
+  \tile{(8.6,0)}{mug}{mug}{mug}
+  \tile{(0,-4.75)}{bottle}{wine bottle}{bottle}
+  \tile{(4.3,-4.75)}{bell}{bell}{bell}
+  \tile{(8.6,-4.75)}{pipe}{elbow pipe}{pipe}
+\end{tikzpicture}
+\end{document}

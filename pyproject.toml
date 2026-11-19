@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stl2bem"
+version = "0.1.0"
+description = "Boundary element solver for sound scattering by rigid objects given as closed STL meshes, on the CPU or GPU"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Junhyeong Kwon" }]
+keywords = ["acoustics", "boundary element method", "BEM", "microphone array", "steering vector",
+            "array manifold", "scattering", "direction of arrival", "CHIEF", "GPU"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Multimedia :: Sound/Audio :: Analysis",
+]
+dependencies = ["numpy>=1.22", "scipy>=1.8", "h5py>=3.0", "tqdm"]
+
+[project.optional-dependencies]
+gpu = ["cupy-cuda12x"]                      # CUDA 12; for other CUDA versions install the matching CuPy
+prep = ["scikit-image>=0.19"]
+plot = ["matplotlib", "pillow"]
+sofa = ["sofar>=1.1"]
+crosscheck = ["bempp-cl>=0.4"]
+dev = ["pytest", "scikit-image>=0.19", "matplotlib", "pillow", "sofar>=1.1", "build", "twine"]
+
+[project.urls]
+Repository = "https://github.com/Kwon-Junhyeong/stl2bem"
+Issues = "https://github.com/Kwon-Junhyeong/stl2bem/issues"
+
+[project.scripts]
+stl2bem = "stl2bem.run:main"
+stl2bem-prep = "stl2bem.prep:main"
+
+[tool.setuptools]
+packages = ["stl2bem"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
