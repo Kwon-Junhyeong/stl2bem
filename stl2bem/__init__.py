@@ -9,7 +9,7 @@ from .panels import (auto_panel_targets, load_mic_positions, map_to_elements, pr
                      surface_receivers)
 from .stl_io import Mesh, build_mesh, mesh_from_arrays, read_stl, write_stl
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 __all__ = [
     "build_mesh", "mesh_from_arrays", "read_stl", "write_stl", "Mesh",

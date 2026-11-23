@@ -272,6 +272,20 @@ def test_stl_round_trip_in_mm(tmp_path):
     assert np.allclose(np.sort(m.centroids, axis=0), np.sort(ref.centroids, axis=0), atol=1e-7)
 
 
+def test_frequency_limit_uses_the_longest_edge(capsys):
+    from stl2bem.stl_io import print_report, valid_up_to_hz
+    m = mesh_from_arrays(*box(0.2, 0.2, 0.2, (20, 20, 2)))          # 1 cm squares, sides 1 cm x 10 cm
+    assert np.isclose(m.info["edge_max_m"], np.hypot(0.01, 0.1))
+    assert np.isclose(valid_up_to_hz(m), 343.0 / (6 * m.info["edge_max_m"]))
+    assert valid_up_to_hz(m, stat="mean") > 4 * valid_up_to_hz(m)
+    f_max = 0.5 * (valid_up_to_hz(m) + valid_up_to_hz(m, stat="mean"))  # the mean passes, the long sides do not
+    print_report(m, f_max=f_max)
+    out = capsys.readouterr().out
+    assert "[WARN]" in out and f"320 of {len(m.tris)} elements" in out
+    print_report(m, f_max=0.9 * valid_up_to_hz(m))
+    assert "[OK]" in capsys.readouterr().out
+
+
 def test_open_mesh_is_refused_unless_allowed(tmp_path):
     from stl2bem import build_mesh, write_stl
     v, t = icosphere(0.05, 2)

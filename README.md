@@ -138,7 +138,8 @@ stl2bem-prep chassis.stl board.stl battery.stl --pitch 8 --units mm --out body.s
 It voxelizes the parts (pitch = element size), fills enclosed cavities and extracts a closed surface. Features
 smaller than the pitch disappear and thin plates become one pitch thick; `--align_z` keeps a flat microphone board
 flat. In Fusion, set the maximum edge length of the STL export to about λ/6 at the highest frequency; the mesh
-report prints the frequency limit from the mean edge length.
+report prints the frequency limit from the longest element edge and warns when some elements are larger than λ/6
+at the highest frequency (CAD exports are often non-uniform).
 
 ## Limits
 

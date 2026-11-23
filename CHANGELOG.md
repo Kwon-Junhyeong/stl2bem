@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.1
+
+- **Mesh check by the largest element.** The mesh report and the dry run derive the frequency limit from the longest
+  edge of the largest element instead of the mean edge length. The report also warns with the number and share of
+  elements larger than λ/6 at the highest frequency, and prints the limit for 95 % of the elements. The mean hid a
+  few large triangles, which CAD exports often have: on the gallery meshes it gave limits 1.4-2.3 times higher than
+  their largest elements allow (bell: 15.5 kHz by the mean edge, 6.8 kHz by the largest element). All gallery
+  results lie well within the new limits.
+- `valid_up_to_hz(mesh, stat=...)`: `"max"` (default), `"p95"`, or `"mean"` for the check of 0.1.0. The mesh info has
+  `edge_p95_m` (95th percentile of the longest edge of each element); `stl2bem.stl_io.element_sizes(mesh)` returns
+  the element sizes.
+
 ## 0.1.0 (first public release)
 
 stl2bem grew from an unreleased GPU solver ("original code" below): STL -> HDF5 tables of the total pressure at

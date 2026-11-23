@@ -142,8 +142,10 @@ mode: if CHIEF results look suspicious at some frequencies, solving with both fo
 
 ## Accuracy guidelines
 
-* Element size ≤ λ/6 (the report prints the resulting frequency limit). The error of constant elements falls with
-  the square of the element size (examples/validation_sphere).
+* Element size ≤ λ/6 for every element, measured by its longest edge. The report prints the resulting frequency
+  limit, the 95th percentile and how many elements are larger at the highest frequency: a mean edge below λ/6 can
+  hide a few large triangles, which CAD exports often have. The error of constant elements falls with the square of
+  the element size (examples/validation_sphere).
 * Closed, consistently oriented surface. Assemblies exported from CAD usually are not: merge them with
   `stl2bem-prep` (voxel union).
 * Thin plates: with exact static integration a plate thinner than the elements is no longer singular, but the CBIE

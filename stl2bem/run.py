@@ -131,7 +131,7 @@ def main(argv=None):
     print(f"  doa      : {len(doa_grid)} ({args.n_az} x {args.n_el})"
           + (f", point sources at {args.source_distance:g} m" if sources is not None else ", plane waves"))
     print(f"  freq     : {len(freqs)} bins (0 ~ {args.fs / 2:.0f} Hz); mesh valid up to "
-          f"~{valid_up_to_hz(mesh, args.c_sound):.0f} Hz (mean edge <= wavelength / 6)")
+          f"~{valid_up_to_hz(mesh, args.c_sound):.0f} Hz (every element <= wavelength / 6)")
     size = body_size(mesh.verts)
     d_far = 2 * size ** 2 / (args.c_sound / (args.fs / 2))                               # Fraunhofer 2 D^2 / lambda
     print(f"  far field: plane waves are accurate for sources beyond 2D^2/lambda = {d_far:.2f} m at "

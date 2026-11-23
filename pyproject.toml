@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "stl2bem"
-version = "0.1.0"
+version = "0.1.1"
 description = "Boundary element solver for sound scattering by rigid objects given as closed STL meshes, on the CPU or GPU"
 readme = "README.md"
 requires-python = ">=3.10"

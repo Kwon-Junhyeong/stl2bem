@@ -132,6 +132,7 @@ def mesh_from_arrays(verts, tris, file_normals=None, recenter: str = "none", sou
     normals = cr / nrm[:, None]
     areas = 0.5 * nrm
     edge = np.linalg.norm(v[:, [1, 2, 0]] - v[:, [0, 1, 2]], axis=2)
+    size = edge.max(axis=1)                                            # element size: its longest edge
     info = {
         "stl_path": source, "units": "m", "scale_to_m": 1.0,
         "n_elements": len(tris), "n_verts": len(verts),
@@ -139,6 +140,7 @@ def mesh_from_arrays(verts, tris, file_normals=None, recenter: str = "none", sou
         "n_degenerate_removed": n_degen,
         "volume_m3": vol, "area_m2": float(areas.sum()),
         "edge_mean_m": float(edge.mean()), "edge_max_m": float(edge.max()),
+        "edge_p95_m": float(np.percentile(size, 95)),                 # 95 % of the elements have no longer edge
         "bbox_min": verts.min(0), "bbox_max": verts.max(0),
         "origin_shift": np.zeros(3),
     }
@@ -181,9 +183,19 @@ def build_mesh(path: str | Path, units: str, scale: float | None = None,
 
 # Report
 
-def valid_up_to_hz(mesh: Mesh, c: float = 343.0, per_wavelength: float = 6.0) -> float:
-    """Highest frequency with the mean element edge <= wavelength / per_wavelength."""
-    return c / (per_wavelength * mesh.info["edge_mean_m"])
+def element_sizes(mesh: Mesh) -> np.ndarray:
+    """Longest edge of every element (m)."""
+    v = mesh.verts[mesh.tris]
+    return np.linalg.norm(v[:, [1, 2, 0]] - v[:, [0, 1, 2]], axis=2).max(axis=1)
+
+
+def valid_up_to_hz(mesh: Mesh, c: float = 343.0, per_wavelength: float = 6.0, stat: str = "max") -> float:
+    """Highest frequency at which the elements are no larger than wavelength / per_wavelength.
+
+    stat: "max" (every element, by its longest edge; the default since 0.1.1), "p95" (95 % of the elements) or
+    "mean" (the mean edge length, the check of 0.1.0, which a few large elements do not move)."""
+    key = {"max": "edge_max_m", "p95": "edge_p95_m", "mean": "edge_mean_m"}[stat]
+    return c / (per_wavelength * mesh.info[key])
 
 
 def print_report(m: Mesh, c: float = 343.0, f_max: float = 8000.0):
@@ -196,11 +208,19 @@ def print_report(m: Mesh, c: float = 343.0, f_max: float = 8000.0):
     if np.any(i["origin_shift"]):
         print(f"  recenter : shifted by {np.round(i['origin_shift'], 4)} m (phase reference = new origin)")
     print(f"  volume   : {i['volume_m3'] * 1e3:.3f} L, surface {i['area_m2'] * 1e4:.1f} cm^2")
-    print(f"  edge     : mean {i['edge_mean_m'] * 1000:.2f} mm, max {i['edge_max_m'] * 1000:.2f} mm")
+    print(f"  edge     : mean {i['edge_mean_m'] * 1000:.2f} mm, max {i['edge_max_m'] * 1000:.2f} mm; "
+          f"95 % of the elements <= {i['edge_p95_m'] * 1000:.2f} mm (longest edge)")
     lam = c / f_max
-    tag = "OK" if i["edge_mean_m"] <= lam / 6 else "WARN"
-    print(f"  [{tag}] lambda/6 at {f_max / 1000:.1f} kHz = {lam / 6 * 1000:.2f} mm "
-          f"-> mesh valid up to ~{valid_up_to_hz(m, c) / 1000:.1f} kHz")
+    n_over = int((element_sizes(m) > lam / 6).sum())
+    if n_over == 0:
+        print(f"  [OK] lambda/6 at {f_max / 1000:.1f} kHz = {lam / 6 * 1000:.2f} mm "
+              f"-> mesh valid up to ~{valid_up_to_hz(m, c) / 1000:.1f} kHz (every element)")
+    else:
+        print(f"  [WARN] lambda/6 at {f_max / 1000:.1f} kHz = {lam / 6 * 1000:.2f} mm: {n_over} of "
+              f"{i['n_elements']} elements ({100 * n_over / i['n_elements']:.1f} %) are larger")
+        print(f"         -> mesh valid up to ~{valid_up_to_hz(m, c) / 1000:.1f} kHz for every element, "
+              f"~{valid_up_to_hz(m, c, stat='p95') / 1000:.1f} kHz for 95 % of them; remesh with a smaller "
+              f"maximum edge length or lower the band")
     if i["open_edges"]:
         print(f"  [WARN] {i['open_edges']} open or non-manifold edges: the surface is not closed "
               f"(the BEM and the CHIEF points assume a closed surface; see stl2bem-prep)")
